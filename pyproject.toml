@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "aopi-python"
+version = "0.1.9"
+description = ""
+authors = ["Pavel Kirilin <win10@list.ru>"]
+readme = "README.rst"
+
+
+[tool.poetry.dependencies]
+python = "^3.9"
+aopi-index-builder = { git = "https://github.com/aopi-project/aopi_index_builder" }
+natsort = "^7.1.0"
+ujson = "^4.0.1"
+aiofile = "^3.3.3"
+loguru = "^0.5.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.1"
+pre-commit = "^2.9.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.plugins."aopi_index"]
+aopi_python = "aopi_python.main:main"
