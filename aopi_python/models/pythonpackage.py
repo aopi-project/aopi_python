@@ -6,8 +6,8 @@ from aopi_python.ctx import context
 from aopi_python.models.dist_info import DistInfoModel
 
 
-class Package(orm.Model):
-    __tablename__ = "packages"
+class PythonPackage(orm.Model):
+    __tablename__ = "python_packages"
     __database__ = context.database
     __metadata__ = context.metadata
 
@@ -40,7 +40,7 @@ class Package(orm.Model):
         )
 
     @classmethod
-    async def create_by_dist_info(cls, upload: DistInfoModel) -> "Package":
+    async def create_by_dist_info(cls, upload: DistInfoModel) -> "PythonPackage":
         upload_dict = cls.cast_dist_info_to_data(upload)
         return await cls.objects.create(**upload_dict)
 

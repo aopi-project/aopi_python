@@ -23,7 +23,7 @@ PREFIX = f"{plugin_prefix}/simple"
 
 @simple_router.get("", response_class=HTMLResponse)
 async def python_simple_index_page(request: Request) -> templates.TemplateResponse:
-    select: Select = sqlalchemy.sql.select([models.Package.objects.table.c.name])
+    select: Select = sqlalchemy.sql.select([models.PythonPackage.objects.table.c.name])
     packages = map(itemgetter(0), await context.database.fetch_all(select))
     return templates.TemplateResponse(
         "simple/index.jinja2",
@@ -39,7 +39,7 @@ async def upload_python_package(
     logger.debug(upload)
     pkg_dir = context.packages_dir / upload.name / upload.version / upload.filetype
     try:
-        await models.PackageVersion.objects.get(
+        await models.PythonPackageVersion.objects.get(
             package__name=upload.name,
             version=upload.version,
             filetype=upload.filetype,
@@ -48,17 +48,19 @@ async def upload_python_package(
         raise HTTPException(status_code=409, detail="Distribution already exists.")
     except NoMatch:
         pass
-    package_exists = await models.Package.objects.filter(name=upload.name).exists()
+    package_exists = await models.PythonPackage.objects.filter(
+        name=upload.name
+    ).exists()
     try:
         file_path = pkg_dir / upload.content.filename
         await save_file(file_path, upload.content)
         logger.debug(f"Saved package file {upload.name} {upload.filetype}")
         if package_exists:
-            package = await models.Package.objects.get(name=upload.name)
+            package = await models.PythonPackage.objects.get(name=upload.name)
             await package.update_by_dist_info(upload)
         else:
-            package = await models.Package.create_by_dist_info(upload)
-        await models.PackageVersion.create_by_dist_info(
+            package = await models.PythonPackage.create_by_dist_info(upload)
+        await models.PythonPackageVersion.create_by_dist_info(
             filename=upload.content.filename,
             package=package,
             size=file_path.stat().st_size,
@@ -84,9 +86,9 @@ async def get_python_package_info(
     Get information about the package.
 
     """
-    versions: List[models.PackageVersion] = await models.PackageVersion.objects.filter(
-        package__name=pkg_name
-    ).all()
+    versions: List[
+        models.PythonPackageVersion
+    ] = await models.PythonPackageVersion.objects.filter(package__name=pkg_name).all()
     if not versions:
         raise HTTPException(status_code=404, detail="Package was not found")
     versions = natsorted(versions, key=attrgetter("version"))

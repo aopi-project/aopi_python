@@ -5,16 +5,16 @@ import orm
 
 from aopi_python.ctx import context
 from aopi_python.models.dist_info import DistInfoModel
-from aopi_python.models.package import Package
+from aopi_python.models.pythonpackage import PythonPackage
 
 
-class PackageVersion(orm.Model):
+class PythonPackageVersion(orm.Model):
     __tablename__ = "python_packages_versions"
     __database__ = context.database
     __metadata__ = context.metadata
 
     id = orm.Integer(primary_key=True)
-    package = orm.ForeignKey(Package)
+    package = orm.ForeignKey(PythonPackage)
 
     size = orm.Integer()
     version = orm.Text()
@@ -57,13 +57,23 @@ class PackageVersion(orm.Model):
 
     @classmethod
     async def create_by_dist_info(
-        cls, *, filename: str, package: Package, size: int, dist_info: DistInfoModel
-    ) -> "PackageVersion":
+        cls,
+        *,
+        filename: str,
+        package: PythonPackage,
+        size: int,
+        dist_info: DistInfoModel
+    ) -> "PythonPackageVersion":
         info_dict = cls.cast_upload_to_dict(filename, dist_info)
         return await cls.objects.create(package=package, size=size, **info_dict)
 
     async def update_by_dist_info(
-        self, *, filename: str, package: Package, size: int, dist_info: DistInfoModel
-    ) -> "PackageVersion":
+        self,
+        *,
+        filename: str,
+        package: PythonPackage,
+        size: int,
+        dist_info: DistInfoModel
+    ) -> "PythonPackageVersion":
         info_dict = self.cast_upload_to_dict(filename, dist_info)
         return await self.update(package=package, size=size, **info_dict)

@@ -1,4 +1,4 @@
-from aopi_python.models.package import Package
-from aopi_python.models.package_version import PackageVersion
+from aopi_python.models.package_version import PythonPackageVersion
+from aopi_python.models.pythonpackage import PythonPackage
 
-models_list = [PackageVersion, Package]
+models_list = [PythonPackageVersion, PythonPackage]
