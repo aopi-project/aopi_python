@@ -21,7 +21,7 @@ simple_router = APIRouter()
 PREFIX = f"{plugin_prefix}/simple"
 
 
-@simple_router.get("/", response_class=HTMLResponse)
+@simple_router.get("", response_class=HTMLResponse)
 async def python_simple_index_page(request: Request) -> templates.TemplateResponse:
     select: Select = sqlalchemy.sql.select([models.Package.objects.table.c.name])
     packages = map(itemgetter(0), await context.database.fetch_all(select))
@@ -31,7 +31,7 @@ async def python_simple_index_page(request: Request) -> templates.TemplateRespon
     )
 
 
-@simple_router.post("/")
+@simple_router.post("")
 async def upload_python_package(
     response: Response,
     upload: PackageUploadModel = Depends(PackageUploadModel.as_form),  # type: ignore

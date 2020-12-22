@@ -14,7 +14,7 @@ develop = ["aiomisc", "asynctest", "pytest", "pytest-cov"]
 
 [[package]]
 name = "aopi-index-builder"
-version = "0.1.17"
+version = "0.1.18"
 description = "Package to build new package indices for AOPI"
 category = "main"
 optional = false
@@ -35,7 +35,7 @@ SQLAlchemy = "^1.3.22"
 type = "git"
 url = "https://github.com/aopi-project/aopi_index_builder"
 reference = "master"
-resolved_reference = "6a13782dd022199ca2c9dc1a02fbed2cbbbbfee0"
+resolved_reference = "b1f6c390c3f1b4e108086bba915daacb462b6309"
 
 [[package]]
 name = "appdirs"
