@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 import orm
 
@@ -15,6 +15,7 @@ class PythonPackageVersion(orm.Model):
 
     id = orm.Integer(primary_key=True)
     package = orm.ForeignKey(PythonPackage)
+    user_id = orm.Integer(index=True, allow_null=True)
 
     size = orm.Integer()
     version = orm.Text()
@@ -62,10 +63,13 @@ class PythonPackageVersion(orm.Model):
         filename: str,
         package: PythonPackage,
         size: int,
-        dist_info: DistInfoModel
+        dist_info: DistInfoModel,
+        user_id: Optional[int]
     ) -> "PythonPackageVersion":
         info_dict = cls.cast_upload_to_dict(filename, dist_info)
-        return await cls.objects.create(package=package, size=size, **info_dict)
+        return await cls.objects.create(
+            package=package, size=size, user_id=user_id, **info_dict
+        )
 
     async def update_by_dist_info(
         self,

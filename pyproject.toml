@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aopi-python"
-version = "0.1.13"
+version = "0.1.18"
 description = ""
 authors = ["Pavel Kirilin <win10@list.ru>"]
 readme = "README.rst"
@@ -13,6 +13,7 @@ natsort = "^7.1.0"
 ujson = "^4.0.1"
 aiofile = "^3.3.3"
 loguru = "^0.5.3"
+orm = "^0.1.5"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.1"

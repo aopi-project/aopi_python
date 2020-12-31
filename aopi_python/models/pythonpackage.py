@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 import orm
 
@@ -12,8 +12,9 @@ class PythonPackage(orm.Model):
     __metadata__ = context.metadata
 
     id = orm.Integer(primary_key=True)
-    name = orm.Text(allow_null=False, index=True)
+    user_id = orm.Integer(allow_null=True, index=True)
 
+    name = orm.Text(allow_null=False, index=True)
     author = orm.Text(allow_null=True)
     summary = orm.Text(allow_null=True)
     license = orm.Text(allow_null=True)
@@ -40,9 +41,11 @@ class PythonPackage(orm.Model):
         )
 
     @classmethod
-    async def create_by_dist_info(cls, upload: DistInfoModel) -> "PythonPackage":
+    async def create_by_dist_info(
+        cls, *, upload: DistInfoModel, user_id: Optional[int]
+    ) -> "PythonPackage":
         upload_dict = cls.cast_dist_info_to_data(upload)
-        return await cls.objects.create(**upload_dict)
+        return await cls.objects.create(**upload_dict, user_id=user_id)
 
     async def update_by_dist_info(self, upload: DistInfoModel) -> None:
         upload_dict = self.cast_dist_info_to_data(upload)
