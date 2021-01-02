@@ -12,15 +12,14 @@ from starlette.requests import Request
 from starlette.responses import HTMLResponse, Response
 
 from aopi_python import models
-from aopi_python.ctx import context, plugin_prefix, templates
+from aopi_python.ctx import context, templates
 from aopi_python.models.dist_info import PackageUploadModel
 from aopi_python.roles import RolesEnum
 from aopi_python.routes.simple.dependencies import get_user_with_role
 from aopi_python.routes.simple.logic import save_file
 
-simple_router = APIRouter()
-
-PREFIX = f"{plugin_prefix}/simple"
+simple_router = APIRouter(prefix="/simple")
+PREFIX = f"{context.prefix}{simple_router.prefix}"
 
 
 @simple_router.get("", response_class=HTMLResponse)
@@ -31,7 +30,11 @@ async def python_simple_index_page(
     packages = map(itemgetter(0), await context.database.fetch_all(select))
     return templates.TemplateResponse(
         "simple/index.jinja2",
-        {"prefix": PREFIX, "packages": packages, "request": request},
+        {
+            "prefix": PREFIX,
+            "packages": packages,
+            "request": request,
+        },
     )
 
 

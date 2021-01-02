@@ -5,5 +5,5 @@ from aopi_python.routes.simple import simple_router
 
 main_router = APIRouter()
 
-main_router.include_router(simple_router, prefix="/simple")
+main_router.include_router(simple_router)
 main_router.include_router(file_router)

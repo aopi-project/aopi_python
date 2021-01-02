@@ -13,5 +13,5 @@ def main() -> PackageIndex:
         target_language="python",
         db_models=models_list,
         roles=RolesEnum,
-        help="To use it add <aopi-url>/python/simple as your index-url",
+        help=f"To use it add <aopi-url>{context.prefix}/simple as your index-url",
     )
