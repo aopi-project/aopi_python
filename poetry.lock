@@ -14,27 +14,20 @@ develop = ["aiomisc", "asynctest", "pytest", "pytest-cov"]
 
 [[package]]
 name = "aopi-index-builder"
-version = "0.1.39"
+version = "0.1.40"
 description = "Package to build new package indices for AOPI"
 category = "main"
 optional = false
-python-versions = "^3.9"
-develop = false
+python-versions = ">=3.9,<4.0"
 
 [package.dependencies]
-databases = "^0.4.1"
-entrypoints = "^0.3"
-fastapi = "^0.63.0"
-Jinja2 = "^2.11.2"
-loguru = "^0.5.3"
-pydantic = "^1.7.3"
-SQLAlchemy = "^1.3.22"
-
-[package.source]
-type = "git"
-url = "https://github.com/aopi-project/aopi_index_builder"
-reference = "master"
-resolved_reference = "f900543ac515e3f234f0bede70876cbf82e26f44"
+databases = ">=0.4.1,<0.5.0"
+entrypoints = ">=0.3,<0.4"
+fastapi = ">=0.63.0,<0.64.0"
+Jinja2 = ">=2.11.2,<3.0.0"
+loguru = ">=0.5.3,<0.6.0"
+pydantic = ">=1.7.3,<2.0.0"
+SQLAlchemy = ">=1.3.22,<2.0.0"
 
 [[package]]
 name = "appdirs"
@@ -154,7 +147,7 @@ python-versions = "*"
 
 [[package]]
 name = "identify"
-version = "1.5.11"
+version = "1.5.12"
 description = "File identification library for Python"
 category = "dev"
 optional = false
@@ -401,7 +394,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "virtualenv"
-version = "20.2.2"
+version = "20.3.0"
 description = "Virtual Python Environment builder"
 category = "dev"
 optional = false
@@ -415,7 +408,7 @@ six = ">=1.9.0,<2"
 
 [package.extras]
 docs = ["proselint (>=0.10.2)", "sphinx (>=3)", "sphinx-argparse (>=0.2.5)", "sphinx-rtd-theme (>=0.4.3)", "towncrier (>=19.9.0rc1)"]
-testing = ["coverage (>=4)", "coverage-enable-subprocess (>=1)", "flaky (>=3)", "pytest (>=4)", "pytest-env (>=0.6.2)", "pytest-freezegun (>=0.4.1)", "pytest-mock (>=2)", "pytest-randomly (>=1)", "pytest-timeout (>=1)", "pytest-xdist (>=1.31.0)", "packaging (>=20.0)", "xonsh (>=0.9.16)"]
+testing = ["coverage (>=4)", "coverage-enable-subprocess (>=1)", "flaky (>=3)", "pytest (>=4)", "pytest-env (>=0.6.2)", "pytest-freezegun (>=0.4.1)", "pytest-mock (>=2)", "pytest-randomly (>=1)", "pytest-timeout (>=1)", "packaging (>=20.0)", "xonsh (>=0.9.16)"]
 
 [[package]]
 name = "win32-setctime"
@@ -431,14 +424,17 @@ dev = ["pytest (>=4.6.2)", "black (>=19.3b0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "974b18871d4e9f793ed2e0f952d58071c7ef784ba0c307db26c47934736b2ab5"
+content-hash = "8b493239b6909ed8f89fdadde068e8d057daa40762a42e62d2c5a70b8b71680b"
 
 [metadata.files]
 aiofile = [
     {file = "aiofile-3.3.3-py3-none-any.whl", hash = "sha256:df8bed76db02948594711cff22d774f9b7d3b3ad132de05a8f3cd60ab8108894"},
     {file = "aiofile-3.3.3.tar.gz", hash = "sha256:50cb8aad220e78b39910101a22540246385f0e011c6064d190d548a7c5d6464b"},
 ]
-aopi-index-builder = []
+aopi-index-builder = [
+    {file = "aopi_index_builder-0.1.40-py3-none-any.whl", hash = "sha256:2761f981ebe200d23807a0b6b9b870cd1f42f0a44179796b298e138501158a99"},
+    {file = "aopi_index_builder-0.1.40.tar.gz", hash = "sha256:e74790bb0e24b08cac411022d4edf2b1cd4a994a6a8f2241aead2ecb4c1d8188"},
+]
 appdirs = [
     {file = "appdirs-1.4.4-py2.py3-none-any.whl", hash = "sha256:a841dacd6b99318a741b166adb07e19ee71a274450e68237b4650ca1055ab128"},
     {file = "appdirs-1.4.4.tar.gz", hash = "sha256:7d5d0167b2b1ba821647616af46a749d1c653740dd0d2415100fe26e27afdf41"},
@@ -492,8 +488,8 @@ filelock = [
     {file = "filelock-3.0.12.tar.gz", hash = "sha256:18d82244ee114f543149c66a6e0c14e9c4f8a1044b5cdaadd0f82159d6a6ff59"},
 ]
 identify = [
-    {file = "identify-1.5.11-py2.py3-none-any.whl", hash = "sha256:7aef7a5104d6254c162990e54a203cdc0fd202046b6c415bd5d636472f6565c4"},
-    {file = "identify-1.5.11.tar.gz", hash = "sha256:b2c71bf9f5c482c389cef816f3a15f1c9d7429ad70f497d4a2e522442d80c6de"},
+    {file = "identify-1.5.12-py2.py3-none-any.whl", hash = "sha256:18994e850ba50c37bcaed4832be8b354d6a06c8fb31f54e0e7ece76d32f69bc8"},
+    {file = "identify-1.5.12.tar.gz", hash = "sha256:892473bf12e655884132a3a32aca737a3cbefaa34a850ff52d501773a45837bc"},
 ]
 iniconfig = [
     {file = "iniconfig-1.1.1-py2.py3-none-any.whl", hash = "sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3"},
@@ -693,8 +689,8 @@ ujson = [
     {file = "ujson-4.0.1.tar.gz", hash = "sha256:26cf6241b36ff5ce4539ae687b6b02673109c5e3efc96148806a7873eaa229d3"},
 ]
 virtualenv = [
-    {file = "virtualenv-20.2.2-py2.py3-none-any.whl", hash = "sha256:54b05fc737ea9c9ee9f8340f579e5da5b09fb64fd010ab5757eb90268616907c"},
-    {file = "virtualenv-20.2.2.tar.gz", hash = "sha256:b7a8ec323ee02fb2312f098b6b4c9de99559b462775bc8fe3627a73706603c1b"},
+    {file = "virtualenv-20.3.0-py2.py3-none-any.whl", hash = "sha256:205a7577275dd0d9223c730dd498e21a8910600085c3dee97412b041fc4b853b"},
+    {file = "virtualenv-20.3.0.tar.gz", hash = "sha256:7992b8de87e544a4ab55afc2240bf8388c4e3b5765d03784dad384bfdf9097ee"},
 ]
 win32-setctime = [
     {file = "win32_setctime-1.0.3-py3-none-any.whl", hash = "sha256:dc925662de0a6eb987f0b01f599c01a8236cb8c62831c22d9cada09ad958243e"},
