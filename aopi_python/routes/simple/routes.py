@@ -41,7 +41,7 @@ async def python_simple_index_page(
 @simple_router.post("")
 async def upload_python_package(
     response: Response,
-    upload: PackageUploadModel = Depends(PackageUploadModel.as_form),  # type: ignore
+    upload: PackageUploadModel = Depends(PackageUploadModel.as_form),
     user_id: Optional[int] = Depends(get_user_with_role(RolesEnum.upload)),
 ) -> Response:
     logger.debug(f"Trying to upload {upload.name}:{upload.version}")

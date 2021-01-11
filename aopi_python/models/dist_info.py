@@ -1,5 +1,5 @@
 from enum import Enum, unique
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 
 from fastapi import File, UploadFile
 from pydantic import Field
@@ -59,3 +59,7 @@ class PackageUploadModel(DistInfoModel):
     class Config(BaseConfig):
         arbitrary_types_allowed = True
         allow_population_by_field_name = True
+
+    @staticmethod
+    def as_form(**data: Dict[str, Any]) -> "PackageUploadModel":
+        ...
