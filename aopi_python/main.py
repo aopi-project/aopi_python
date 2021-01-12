@@ -12,7 +12,6 @@ from aopi_python.routes import main_router
 
 
 def main() -> PackageIndex:
-    print(context)
     return PackageIndex(
         router=main_router,
         target_language="python",
