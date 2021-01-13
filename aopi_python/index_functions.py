@@ -63,7 +63,15 @@ async def get_versions_func(
             metadata={
                 key: val
                 for key, val in version.items()
-                if key not in ["version", "yanked", "package"]
+                if key
+                not in [
+                    "id",
+                    "yanked",
+                    "version",
+                    "user_id",
+                    "package",
+                    "description",
+                ]
             },
         )
 
