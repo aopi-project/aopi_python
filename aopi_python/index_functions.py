@@ -39,10 +39,14 @@ async def get_package_info_func(user_id: Optional[int], pkg_id: int) -> FullPack
     description_format = ReadmeFormats.TEXT
     if "description" in last_version.keys():
         description = last_version["description"]
-        if "text/x-rst" in last_version["description_content_type"]:
-            description_format = ReadmeFormats.RST
-        if "text/markdown" in last_version["description_content_type"]:
-            description_format = ReadmeFormats.MD
+    content_type_map = {
+        "text/x-rst": ReadmeFormats.RST,
+        "text/markdown": ReadmeFormats.MD,
+    }
+    if "description_content_type" in last_version.keys():
+        description_format = content_type_map.get(
+            last_version["description_content_type"], description_format
+        )
     return FullPackageInfo(
         id=package.id,
         name=package.name,
