@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aopi-python"
-version = "0.1.28"
+version = "0.1.29"
 description = ""
 authors = ["Pavel Kirilin <win10@list.ru>"]
 readme = "README.rst"
