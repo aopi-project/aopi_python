@@ -1,6 +1,7 @@
 from typing import Dict, List, Optional
 
 from aopi_index_builder import FullPackageInfo, PackagePreview, PackageVersion
+from aopi_index_builder.schema import ReadmeFormats
 
 from aopi_python.ctx import context
 from aopi_python.models import PythonPackage, PythonPackageVersion
@@ -35,13 +36,19 @@ async def get_package_info_func(user_id: Optional[int], pkg_id: int) -> FullPack
     ).limit(1)
     last_version = await context.database.fetch_one(last_version_query)
     description = None
+    description_format = ReadmeFormats.TEXT
     if "description" in last_version.keys():
         description = last_version["description"]
+        if "text/x-rst" in last_version["description_format"]:
+            description_format = ReadmeFormats.RST
+        if "text/markdown" in last_version["description_format"]:
+            description_format = ReadmeFormats.MD
     return FullPackageInfo(
         id=package.id,
         name=package.name,
         short_description=package.summary,
         description=description,
+        description_format=description_format,
         last_version=last_version["version"],
         metadata={
             key: val
