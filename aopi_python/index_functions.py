@@ -28,12 +28,12 @@ async def find_packages_func(
 async def get_package_info_func(user_id: Optional[int], pkg_id: int) -> FullPackageInfo:
     await context.has_permission(user_id=user_id, role=RolesEnum.read)
     package: PythonPackage = await PythonPackage.objects.get(id=pkg_id)
-    last_version_query = PythonPackageVersion.objects.filter(
-        package=package
-    ).build_select_expression()
-    last_version_query.order_by(
-        PythonPackageVersion.__table__.c.upload_time.desc()
-    ).limit(1)
+    last_version_query = (
+        PythonPackageVersion.objects.filter(package=package)
+        .build_select_expression()
+        .order_by(PythonPackageVersion.__table__.c.upload_time.desc())
+        .limit(1)
+    )
     last_version = await context.database.fetch_one(last_version_query)
     description = None
     description_format = ReadmeFormats.TEXT
