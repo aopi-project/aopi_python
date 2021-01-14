@@ -14,7 +14,7 @@ develop = ["aiomisc", "asynctest", "pytest", "pytest-cov"]
 
 [[package]]
 name = "aopi-index-builder"
-version = "0.1.40"
+version = "0.1.41"
 description = "Package to build new package indices for AOPI"
 category = "main"
 optional = false
@@ -432,8 +432,8 @@ aiofile = [
     {file = "aiofile-3.3.3.tar.gz", hash = "sha256:50cb8aad220e78b39910101a22540246385f0e011c6064d190d548a7c5d6464b"},
 ]
 aopi-index-builder = [
-    {file = "aopi_index_builder-0.1.40-py3-none-any.whl", hash = "sha256:2761f981ebe200d23807a0b6b9b870cd1f42f0a44179796b298e138501158a99"},
-    {file = "aopi_index_builder-0.1.40.tar.gz", hash = "sha256:e74790bb0e24b08cac411022d4edf2b1cd4a994a6a8f2241aead2ecb4c1d8188"},
+    {file = "aopi_index_builder-0.1.41-py3-none-any.whl", hash = "sha256:d24fff03a6aa7b01ef6c27a4731dcb74d93f927e3b30ac7fb1d717e72d95fd48"},
+    {file = "aopi_index_builder-0.1.41.tar.gz", hash = "sha256:f0816b8ecacdb8557b07871b2cd2bedcab797839ca28daa81ccacdf12ee40b21"},
 ]
 appdirs = [
     {file = "appdirs-1.4.4-py2.py3-none-any.whl", hash = "sha256:a841dacd6b99318a741b166adb07e19ee71a274450e68237b4650ca1055ab128"},
